@@ -31,8 +31,29 @@ fn test_toy_lending_pool_borrow() {
     let pool_client = ToyLendingPoolClient::new(&env, &pool_id);
     
     // Borrow against it
-    let borrow_amount = pool_client.borrow_against(&token_id);
+    let borrow_amount = pool_client.borrow_against(&registry_id, &token_id);
     
     // The mock token returns 1000_0000000. Our pool lends out half.
     assert_eq!(borrow_amount, 500_0000000);
+}
+
+#[test]
+#[should_panic(expected = "Token is not registered in the RwaRegistry")]
+fn test_toy_lending_pool_borrow_unregistered() {
+    let env = Env::default();
+    
+    // Deploy registry
+    let registry_id = env.register_contract(None, RwaRegistry);
+    
+    // Deploy Mock Invoice Token
+    let token_id = env.register_contract(None, MockInvoiceToken);
+    
+    // Do NOT register token in registry
+    
+    // Deploy Toy Lending Pool
+    let pool_id = env.register_contract(None, ToyLendingPool);
+    let pool_client = ToyLendingPoolClient::new(&env, &pool_id);
+    
+    // Attempt to borrow against it, which should panic
+    pool_client.borrow_against(&registry_id, &token_id);
 }
