@@ -1,0 +1,12 @@
+[package]
+name = "ossify-registry"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+soroban-sdk = { workspace = true }
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+[features]
+testutils = ["soroban-sdk/testutils"]
