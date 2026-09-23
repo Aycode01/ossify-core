@@ -41,3 +41,7 @@ Consumers can query the `RwaRegistry` contract to verify if an RWA contract is o
 
 ## Adoption and Compatibility
 The `token: Address` parameter is designed to treat the RWA contract itself as the distinct asset, matching the architectural patterns of leading invoice factoring projects where `1 Contract = 1 Invoice`. For platforms using fractionalized fungible vaults, the `token` parameter can be used to pass a specific vault's address, though such platforms should ensure they report the total available pool value, requiring consumers to measure their fractional share independently.
+
+## Known Limitations
+
+The `RwaCollateral` standard targets 1:1 asset-to-token models (such as single invoices) as its primary use case for v1. It does not natively handle fractionalized or vault-style RWA tokens, as `collateral_value` returns the total value of the pool, which pushes the math for fractional ownership onto the consuming lending pool. For a detailed analysis of how this fits with existing ecosystem protocols, please refer to [RESEARCH.md](RESEARCH.md).
