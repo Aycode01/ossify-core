@@ -13,6 +13,7 @@ pub struct RwaRegistry;
 impl RwaRegistry {
     /// Registers a token address as implementing the RwaCollateral trait.
     pub fn register(env: Env, token: Address) {
+        token.require_auth();
         let mut tokens: Vec<Address> = env
             .storage()
             .instance()
@@ -20,7 +21,7 @@ impl RwaRegistry {
             .unwrap_or(Vec::new(&env));
             
         if !tokens.contains(&token) {
-            tokens.push_back(token);
+            tokens.push_back(token.clone());
             env.storage().instance().set(&DataKey::Tokens, &tokens);
         }
     }
@@ -36,6 +37,7 @@ impl RwaRegistry {
     /// Deregisters a token address, removing it from the compliant RWA list.
     /// If the token is not currently registered, this function acts as a no-op.
     pub fn deregister(env: Env, token: Address) {
+        token.require_auth();
         let mut tokens: Vec<Address> = env
             .storage()
             .instance()

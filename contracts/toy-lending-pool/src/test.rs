@@ -9,6 +9,7 @@ use ossify_reference_rwa::{MockInvoiceToken, MockInvoiceTokenClient};
 #[test]
 fn test_toy_lending_pool_borrow() {
     let env = Env::default();
+    env.mock_all_auths();
     
     // Deploy registry (though our toy pool doesn't strictly check it yet, it's good practice to set it up)
     let registry_id = env.register_contract(None, RwaRegistry);

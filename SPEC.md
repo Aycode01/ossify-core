@@ -37,7 +37,7 @@ Executes a liquidation, transferring the underlying claim or ownership of the RW
 - **Semantics**: The caller of this function is typically a lending pool executing a default. Implementers must ensure that this function adheres strictly to their platform's legal and on-chain liquidation policies.
 
 ## The RWA Registry
-Consumers can query the `RwaRegistry` contract to verify if an RWA contract is officially compliant with the `RwaCollateral` standard. This prevents spoofing and allows protocols to automatically onboard newly compliant assets.
+Consumers can query the `RwaRegistry` contract to verify if an RWA contract is listed as compliant with the `RwaCollateral` standard. The registry requires token self-authorization for both registration and deregistration, meaning only the token contract itself (or its explicitly authorized proxy) can manage its listing. This prevents spoofing and impersonation by third parties. However, note that registration simply confirms the token contract authorized being listed; it does not mean its `collateral_value`, `is_redeemable`, or `liquidate` logic has been independently audited or verified as correct.
 
 ## Adoption and Compatibility
 The `token: Address` parameter is designed to treat the RWA contract itself as the distinct asset, matching the architectural patterns of leading invoice factoring projects where `1 Contract = 1 Invoice`. For platforms using fractionalized fungible vaults, the `token` parameter can be used to pass a specific vault's address, though such platforms should ensure they report the total available pool value, requiring consumers to measure their fractional share independently.
