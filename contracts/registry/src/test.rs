@@ -1,14 +1,14 @@
 #![cfg(test)]
 
 use super::*;
-use soroban_sdk::{testutils::Address as _, Address, Env};
+use soroban_sdk::{testutils::{Address as _, Events}, Address, Env, vec, IntoVal, symbol_short, Symbol};
 
 #[test]
 fn test_registry_register_and_deregister() {
     let env = Env::default();
     env.mock_all_auths();
     
-    let registry_id = env.register_contract(None, RwaRegistry);
+    let registry_id = env.register(RwaRegistry, ());
     let client = RwaRegistryClient::new(&env, &registry_id);
     
     let token1 = Address::generate(&env);
@@ -19,6 +19,19 @@ fn test_registry_register_and_deregister() {
 
     // Register a new token
     client.register(&token1);
+    
+    assert_eq!(
+        env.events().all(),
+        vec![
+            &env,
+            (
+                registry_id.clone(),
+                (symbol_short!("register"),).into_val(&env),
+                token1.into_val(&env)
+            )
+        ]
+    );
+
     let registered = client.get_registered();
     assert_eq!(registered.len(), 1);
     assert_eq!(registered.get(0).unwrap(), token1.clone());
@@ -35,6 +48,19 @@ fn test_registry_register_and_deregister() {
 
     // Deregister an existing token
     client.deregister(&token1);
+    
+    assert_eq!(
+        env.events().all(),
+        vec![
+            &env,
+            (
+                registry_id.clone(),
+                (Symbol::new(&env, "deregister"),).into_val(&env),
+                token1.into_val(&env)
+            )
+        ]
+    );
+
     let registered = client.get_registered();
     assert_eq!(registered.len(), 1);
     assert_eq!(registered.get(0).unwrap(), token2.clone());
@@ -52,7 +78,7 @@ fn test_registry_register_unauthorized() {
     let env = Env::default();
     // Do NOT mock auth here to verify it panics
     
-    let registry_id = env.register_contract(None, RwaRegistry);
+    let registry_id = env.register(RwaRegistry, ());
     let client = RwaRegistryClient::new(&env, &registry_id);
     
     let token = Address::generate(&env);
