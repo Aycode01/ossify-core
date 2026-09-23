@@ -32,4 +32,19 @@ impl RwaRegistry {
             .get(&DataKey::Tokens)
             .unwrap_or(Vec::new(&env))
     }
+
+    /// Deregisters a token address, removing it from the compliant RWA list.
+    /// If the token is not currently registered, this function acts as a no-op.
+    pub fn deregister(env: Env, token: Address) {
+        let mut tokens: Vec<Address> = env
+            .storage()
+            .instance()
+            .get(&DataKey::Tokens)
+            .unwrap_or(Vec::new(&env));
+            
+        if let Some(index) = tokens.first_index_of(&token) {
+            tokens.remove(index);
+            env.storage().instance().set(&DataKey::Tokens, &tokens);
+        }
+    }
 }
