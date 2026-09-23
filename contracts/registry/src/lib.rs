@@ -23,6 +23,7 @@ impl RwaRegistry {
         if !tokens.contains(&token) {
             tokens.push_back(token.clone());
             env.storage().instance().set(&DataKey::Tokens, &tokens);
+            env.events().publish((soroban_sdk::symbol_short!("register"),), token);
         }
     }
 
@@ -47,6 +48,7 @@ impl RwaRegistry {
         if let Some(index) = tokens.first_index_of(&token) {
             tokens.remove(index);
             env.storage().instance().set(&DataKey::Tokens, &tokens);
+            env.events().publish((soroban_sdk::Symbol::new(&env, "deregister"),), token);
         }
     }
 }

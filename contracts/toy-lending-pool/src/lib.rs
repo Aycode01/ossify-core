@@ -25,7 +25,9 @@ impl ToyLendingPool {
         let value = token_client.collateral_value(&token);
         
         // We might lend out 50% of the collateral value
-        value / 2
+        let amount_lent = value / 2;
+        env.events().publish((soroban_sdk::symbol_short!("borrow"),), (token, amount_lent));
+        amount_lent
     }
 }
 mod test;
