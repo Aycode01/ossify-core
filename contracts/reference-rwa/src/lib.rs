@@ -27,3 +27,5 @@ impl RwaCollateral for MockInvoiceToken {
         Ok(())
     }
 }
+
+mod test;
