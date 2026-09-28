@@ -18,3 +18,14 @@ jobs:
           targets: wasm32-unknown-unknown, wasm32v1-none
       - name: Run tests
         run: cargo test
+      # Soroban contracts must be built by the Stellar CLI: it runs the SDK's
+      # spec shaking step, and soroban-sdk 28 refuses to build for a wasm target
+      # when the build system does not support it. Pinned to the soroban-sdk major.
+      - name: Install Stellar CLI
+        run: |
+          curl -sSL -o /tmp/stellar-cli.tar.gz \
+            https://github.com/stellar/stellar-cli/releases/download/v28.1.0/stellar-cli-28.1.0-x86_64-unknown-linux-gnu.tar.gz
+          tar -xzf /tmp/stellar-cli.tar.gz -C /usr/local/bin stellar
+          stellar --version
+      - name: Build contracts to Wasm
+        run: stellar contract build
