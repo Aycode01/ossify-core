@@ -12,13 +12,16 @@ Ossify v1 targets 1:1 asset-to-token models, where each registered contract repr
 
 ## Step 1: Add Dependencies
 
-Add the registry and trait clients to your `Cargo.toml`.
+Add the registry and trait clients to your `Cargo.toml`. The crates are not published on crates.io, so depend on the repository and pin it to a revision:
 
 ```toml
 [dependencies]
-ossify-registry = "0.1.0"
-ossify-rwa-trait = "0.1.0"
+ossify-registry = { git = "https://github.com/Aycode01/ossify-core", rev = "e344ccb2a5004a3a7adabd353ddad147be9eafff", package = "ossify-registry" }
+ossify-rwa-trait = { git = "https://github.com/Aycode01/ossify-core", rev = "e344ccb2a5004a3a7adabd353ddad147be9eafff", package = "ossify-rwa-trait" }
+soroban-sdk = "28.0.0"
 ```
+
+`rev` is pinned so your build does not change when `main` moves. The revision above is the last one validated against these guides; bump it when you want newer contract changes. The `package` keys are only needed if you rename the dependency locally.
 
 ## Step 2: Verify the Token
 

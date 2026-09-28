@@ -4,14 +4,18 @@ This guide is written for Real-World Asset token issuers (e.g., platforms like I
 
 Ossify v1 targets 1:1 asset-to-token models, meaning one contract per claim. If your token is a fractionalized or vault-style asset, read "Known Limitations" in [SPEC.md](../SPEC.md) before adopting, because `collateral_value` reports the total pool value rather than a holder's share.
 
-## Step 1: Add the Trait Dependency
+## Step 1: Add the Dependencies
 
-First, add the `ossify-rwa-trait` dependency to your token contract's `Cargo.toml`.
+First, add the `ossify-rwa-trait` dependency to your token contract's `Cargo.toml`. Neither crate is published on crates.io, so depend on the repository and pin it to a revision:
 
 ```toml
 [dependencies]
-ossify-rwa-trait = "0.1.0"
+ossify-rwa-trait = { git = "https://github.com/Aycode01/ossify-core", rev = "e344ccb2a5004a3a7adabd353ddad147be9eafff", package = "ossify-rwa-trait" }
+ossify-registry = { git = "https://github.com/Aycode01/ossify-core", rev = "e344ccb2a5004a3a7adabd353ddad147be9eafff", package = "ossify-registry" }
+soroban-sdk = "28.0.0"
 ```
+
+`ossify-registry` is only needed if you use the `register_in_ossify` helper from Step 3. `rev` is pinned so your build does not change when `main` moves; the revision above is the one these instructions were validated against, so bump it when you want newer contract changes. The `package` keys are only needed if you rename a dependency locally.
 
 ## Step 2: Implement the `RwaCollateral` Trait
 
