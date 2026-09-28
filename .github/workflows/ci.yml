@@ -12,10 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      # The Rust version and the wasm target come from rust-toolchain.toml at the
+      # repo root, so CI compiles with the same toolchain as contributors.
+      # `rustup toolchain install` with no argument installs the active
+      # (pinned) toolchain together with the targets listed there. Do not
+      # replace this with a floating `stable` toolchain.
       - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: wasm32-unknown-unknown, wasm32v1-none
+        run: rustup toolchain install
+      - name: Show toolchain
+        run: rustc --version --verbose
       - name: Run tests
         run: cargo test
       # Soroban contracts must be built by the Stellar CLI: it runs the SDK's

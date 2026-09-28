@@ -1,0 +1,10 @@
+[toolchain]
+# Pinned so local builds, CI and the Stellar CLI all use the same compiler.
+# 1.98.1 is the version verified to build and test the contracts against
+# soroban-sdk 28 (which requires >= 1.91.0). Bump deliberately, not by
+# floating to `stable`.
+channel = "1.98.1"
+# The Stellar CLI builds contracts for this target. `wasm32-unknown-unknown`
+# is intentionally absent: soroban-sdk 28 rejects it for contract builds.
+targets = ["wasm32v1-none"]
+profile = "minimal"

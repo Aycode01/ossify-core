@@ -4,7 +4,7 @@ We welcome contributions to Ossify! This guide covers how to build, test, and su
 
 ## Getting Started
 
-1. **Prerequisites**: Ensure you have Rust installed along with the `wasm32v1-none` target, and the Stellar CLI (v25.2.0+) on your `PATH`.
+1. **Prerequisites**: Ensure you have `rustup` and the Stellar CLI (v25.2.0+) on your `PATH`. The Rust version and the `wasm32v1-none` target are pinned in [`rust-toolchain.toml`](./rust-toolchain.toml), so `rustup toolchain install` gets you the exact toolchain CI uses.
 2. **Build**: Run `stellar contract build` to compile the contracts. A plain `cargo build --target wasm32v1-none --release` will fail: `soroban-sdk` requires a build system that runs spec shaking.
 3. **Test**: Run `cargo test` to execute all unit tests.
 
