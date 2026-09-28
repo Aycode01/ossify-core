@@ -4,7 +4,11 @@ This guide is for decentralized applications (DeFi), such as lending pools, AMMs
 
 ## Why Integrate Ossify?
 
-Without Ossify, your protocol must implement a custom interface and state-checking logic for every tokenized RWA. By supporting Ossify, you write your integration logic once and instantly support all compliant tokens.
+Without Ossify, your protocol must implement a custom interface and state-checking logic for every tokenized RWA. By supporting Ossify, you write your integration logic once and can accept any registered token.
+
+## Scope
+
+Ossify v1 targets 1:1 asset-to-token models, where each registered contract represents one claim and `collateral_value` returns that claim's value. For fractionalized or vault-style tokens, `collateral_value` reports the total pool, so your protocol has to measure a holder's share itself. See "Known Limitations" in [SPEC.md](../SPEC.md) and the survey in [RESEARCH.md](../RESEARCH.md).
 
 ## Step 1: Add Dependencies
 
@@ -42,7 +46,7 @@ assert!(token_client.is_redeemable(&token_address), "Token is defaulted or not r
 
 ## Step 4: Value the Collateral
 
-Query the exact value of the asset. Because the value represents a real-world claim (e.g., $1,000 USD), you can safely use it for Loan-to-Value (LTV) calculations.
+Query the exact value of the asset. Because the value represents a real-world claim (e.g., $1,000 USD), your protocol can use it as the input to its own Loan-to-Value (LTV) calculation. The registry does not verify the reported value, so the risk policy, haircut, and LTV ceiling remain your protocol's decision.
 
 ```rust
 let collateral_value = token_client.collateral_value(&token_address);

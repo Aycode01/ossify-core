@@ -1,6 +1,8 @@
 # Adopter Guide
 
-This guide is written for Real-World Asset token issuers (e.g., platforms like Invoice Liquidity Network or Kora Protocol) wanting to make their tokens Ossify-compliant. By adopting the `RwaCollateral` standard, your tokens instantly become usable across the Soroban DeFi ecosystem without requiring custom integrations.
+This guide is written for Real-World Asset token issuers (e.g., platforms like Invoice Liquidity Network or Kora Protocol) wanting to make their tokens Ossify-compliant. By adopting the `RwaCollateral` standard, your tokens become readable by any consumer protocol that already integrates the registry, without a bilateral integration per token.
+
+Ossify v1 targets 1:1 asset-to-token models, meaning one contract per claim. If your token is a fractionalized or vault-style asset, read "Known Limitations" in [SPEC.md](../SPEC.md) before adopting, because `collateral_value` reports the total pool value rather than a holder's share.
 
 ## Step 1: Add the Trait Dependency
 
@@ -66,4 +68,4 @@ impl MyInvoiceToken {
 
 Deploy your token to the Stellar network as usual. Once deployed, invoke your `register_in_ossify` function, passing the official Ossify `RwaRegistry` contract ID.
 
-Your token is now Ossify-compliant and can be utilized by any consumer protocol!
+Your token is now listed in the Ossify `RwaRegistry` and can be read by any consumer protocol that integrates that registry. Note that listing only means your contract authorized its own registration: consumers still need to set their own risk policy, since the registry does not verify your `collateral_value` or `liquidate` logic.

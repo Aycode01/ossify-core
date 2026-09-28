@@ -6,7 +6,7 @@
 ---
 
 ## 1. Project Description
-Real-World Asset (RWA) projects on Soroban each use a different on-chain state model, so lending pools and insurance protocols have to build a custom integration for every tokenized claim they want to accept. Ossify targets that fragmentation with two pieces: a shared `RwaCollateral` trait that any RWA token can implement, and an on-chain `RwaRegistry` where token contracts self-register, so consumers can discover compliant tokens and read their collateral value, redemption status, and liquidation path through one interface. Both are written in Rust on Soroban, covered by unit tests, and deployed to the Stellar testnet. The scope of v1 is the 1:1 asset-to-token model, meaning one contract per claim, as used by invoice platforms such as Invoice Liquidity Network and Kora Protocol (see [RESEARCH.md](./RESEARCH.md)). Fractionalized and vault-style tokens such as StellarSettle and TradeFlow-Core are not natively supported: `collateral_value` reports the whole pool there, leaving consumers to work out fractional shares themselves. See "Known Limitations" in [SPEC.md](./SPEC.md). Registration also only records that a token authorized its own listing; it is not an audit of that token's valuation or liquidation logic.
+Real-World Asset (RWA) projects on Soroban each use a different on-chain state model, so lending pools and insurance protocols have to build a custom integration for every tokenized claim they want to accept. Ossify targets that fragmentation with two pieces: a shared `RwaCollateral` trait that any RWA token can implement, and an on-chain `RwaRegistry` where token contracts self-register, so consumers can discover compliant tokens and read their collateral value, redemption status, and liquidation path through one interface. Both are written in Rust on Soroban, have unit tests for the registry and the toy lending pool, and are deployed to the Stellar testnet. The scope of v1 is the 1:1 asset-to-token model, meaning one contract per claim, as used by invoice platforms such as Invoice Liquidity Network and Kora Protocol (see [RESEARCH.md](./RESEARCH.md)). Fractionalized and vault-style tokens such as StellarSettle and TradeFlow-Core are not natively supported: `collateral_value` reports the whole pool there, leaving consumers to work out fractional shares themselves. See "Known Limitations" in [SPEC.md](./SPEC.md). Registration also only records that a token authorized its own listing; it is not an audit of that token's valuation or liquidation logic.
 
 ## 2. Testnet Contract Deployments (Verified)
 The core infrastructure and reference implementations are live on the Stellar Testnet:
@@ -25,10 +25,14 @@ The full documentation site content is available in the `docs/` directory of the
 - Consumer Guide for DeFi protocols
 
 ## 4. Planned Issues (Roadmap)
-We have identified and filed the following roadmap items as GitHub issues to guide ongoing development:
-- **Architecture**: `feat: add ossify-sdk adapters` for platforms using alternative DTO models (e.g., LiquiFact).
-- **Architecture**: `feat: fractional vault support` to extend the standard for ERC-4626 style multi-owner RWAs.
-- **Consumers**: `feat: add a second reference consumer` demonstrating a basic AMM or insurance pool integration.
+We have identified and scoped the following roadmap items. `scripts/create-issues.sh` files them as GitHub issues, each with acceptance criteria:
+- **SDK**: `feat: create ossify-sdk adapter package` for platforms using alternative DTO models (e.g., LiquiFact).
+- **Fractional vaults**: `feat: integrate fractionalized vaults into the standard` and the follow-up `spike: fractional-share adapter for vault-style RWA tokens`.
+- **Consumers**: `feat: build second reference consumer (Insurance Pool)`.
+- **Reference tokens**: `feat: add second reference token modelling a warehouse receipt`.
+- **Registry**: `feat(registry): add paginated get_registered for large token lists` and `feat(registry): add get_collateral_info view for indexers`.
+- **Tests**: `test(reference-rwa): cover liquidation and redemption logic` and `test(registry): add property-based tests for register and deregister`.
+- **Docs**: `docs: add a worked end-to-end testnet example`.
 
 ## 5. Demo Video
 *(MANUAL STEP: Insert link to screen recording showing registry interaction, collateral querying, and the unauthorized registration failure case).*
