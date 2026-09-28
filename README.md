@@ -12,7 +12,7 @@
 Ossify is a shared collateral standard for tokenized Real-World Assets (RWAs) on the Soroban network. It aims to unify disparate RWA token interfaces (like those for factored invoices) under a single, predictable standard, allowing lending protocols and insurance pools to assess and liquidate any compliant asset through one interface. The standard currently targets 1:1 asset-to-token models; see "Known Limitations" in [SPEC.md](./SPEC.md) for what it does not cover. For full details on the standard's semantic design, read the [SPEC.md](./SPEC.md).
 
 **Maintainer**: Omitogun Ayobami ([@Aycode01](https://github.com/Aycode01))  
-**Community**: [Join our Discord](https://discord.gg/ossify)
+**Community**: [Telegram](https://t.me/+KUvycekLJrcxYmM0) | [Discord](https://discord.gg/4w674EYwC)
 
 ## Architecture & Layout
 - **`contracts/trait/`**: Defines the `RwaCollateral` interface trait.
