@@ -4,8 +4,8 @@ We welcome contributions to Ossify! This guide covers how to build, test, and su
 
 ## Getting Started
 
-1. **Prerequisites**: Ensure you have Rust installed along with the `wasm32v1-none` target.
-2. **Build**: Run `cargo build` to compile the contracts.
+1. **Prerequisites**: Ensure you have Rust installed along with the `wasm32v1-none` target, and the Stellar CLI (v25.2.0+) on your `PATH`.
+2. **Build**: Run `stellar contract build` to compile the contracts. A plain `cargo build --target wasm32v1-none --release` will fail: `soroban-sdk` requires a build system that runs spec shaking.
 3. **Test**: Run `cargo test` to execute all unit tests.
 
 ## Claiming a Wave Issue
@@ -16,7 +16,7 @@ We welcome contributions to Ossify! This guide covers how to build, test, and su
 ## Pull Request Expectations
 
 - **One Logical Change per PR**: Keep your PRs focused on a single issue or task.
-- **Pass CI**: Ensure all tests pass (`cargo test`) before requesting a review.
+- **Pass CI**: Ensure all tests pass (`cargo test`) and contracts build (`stellar contract build`) before requesting a review.
 - **Format**: Follow standard Rust formatting rules (`cargo fmt`).
 
 ## Commit Format
