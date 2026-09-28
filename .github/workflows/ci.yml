@@ -11,7 +11,7 @@ jobs:
     name: Cargo Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
       # The Rust version and the wasm target come from rust-toolchain.toml at the
       # repo root, so CI compiles with the same toolchain as contributors.
       # `rustup toolchain install` with no argument installs the active
