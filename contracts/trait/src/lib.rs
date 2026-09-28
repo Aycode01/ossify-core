@@ -4,7 +4,7 @@ use soroban_sdk::{contractclient, Address, Env, Error};
 
 /// The RwaCollateral trait defines a standard interface for real-world asset (RWA) tokens
 /// to report their status and handle liquidations, allowing lending protocols to integrate
-/// with any compliant RWA token seamlessly.
+/// with any compliant RWA token through a single interface.
 #[contractclient(name = "RwaCollateralClient")]
 pub trait RwaCollateral {
     /// Returns the current collateral value of the token.

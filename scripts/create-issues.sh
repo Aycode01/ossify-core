@@ -10,7 +10,7 @@ We need to build the \`ossify-sdk\` to provide adapters for easily wrapping exis
 ### Acceptance Criteria
 - [ ] Create a new \`ossify-sdk\` crate.
 - [ ] Provide wrapper utilities/macros for Soroban tokens.
-- [ ] Write integration tests proving an adapter maps seamlessly to the registry.
+- [ ] Write integration tests proving an adapter registers correctly with the registry.
 
 ### Tech Stack
 - Rust, Soroban SDK"

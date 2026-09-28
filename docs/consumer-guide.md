@@ -1,6 +1,6 @@
 # Consumer Guide
 
-This guide is for decentralized applications (DeFi), such as lending pools, AMMs, or insurance protocols, that want to seamlessly integrate any Ossify-compliant Real-World Asset (RWA).
+This guide is for decentralized applications (DeFi), such as lending pools, AMMs, or insurance protocols, that want to integrate any Ossify-compliant Real-World Asset (RWA).
 
 ## Why Integrate Ossify?
 
