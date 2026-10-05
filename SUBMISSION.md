@@ -24,15 +24,15 @@ The full documentation site content is available in the `docs/` directory of the
 - Adopter Guide for RWA issuers
 - Consumer Guide for DeFi protocols
 
-## 4. Planned Issues (Roadmap)
-We have identified and scoped the following roadmap items. `scripts/create-issues.sh` files them as GitHub issues, each with acceptance criteria:
-- **SDK**: `feat: create ossify-sdk adapter package` for platforms using alternative DTO models (e.g., LiquiFact).
-- **Fractional vaults**: `feat: integrate fractionalized vaults into the standard` and the follow-up `spike: fractional-share adapter for vault-style RWA tokens`.
-- **Consumers**: `feat: build second reference consumer (Insurance Pool)`.
-- **Reference tokens**: `feat: add second reference token modelling a warehouse receipt`.
-- **Registry**: `feat(registry): add paginated get_registered for large token lists` and `feat(registry): add get_collateral_info view for indexers`.
-- **Tests**: `test(reference-rwa): cover liquidation and redemption logic` and `test(registry): add property-based tests for register and deregister`.
-- **Docs**: `docs: add a worked end-to-end testnet example`.
+## 4. Roadmap Issues (Filed)
+The following 10 roadmap items are filed as GitHub issues, each with acceptance criteria and a phase label. See the [issues tab](https://github.com/Aycode01/ossify-core/issues) for the full list.
+- **SDK**: [`feat: create ossify-sdk adapter package`](https://github.com/Aycode01/ossify-core/issues/1) for platforms using alternative DTO models (e.g., LiquiFact).
+- **Fractional vaults**: [`feat: integrate fractionalized vaults into the standard`](https://github.com/Aycode01/ossify-core/issues/3) and the follow-up [`spike: fractional-share adapter for vault-style RWA tokens`](https://github.com/Aycode01/ossify-core/issues/8).
+- **Consumers**: [`feat: build second reference consumer (Insurance Pool)`](https://github.com/Aycode01/ossify-core/issues/2).
+- **Reference tokens**: [`feat: add second reference token modelling a warehouse receipt`](https://github.com/Aycode01/ossify-core/issues/7).
+- **Registry**: [`feat(registry): add paginated get_registered for large token lists`](https://github.com/Aycode01/ossify-core/issues/4) and [`feat(registry): add get_collateral_info view for indexers`](https://github.com/Aycode01/ossify-core/issues/5).
+- **Tests**: [`test(reference-rwa): cover liquidation and redemption logic`](https://github.com/Aycode01/ossify-core/issues/6) and [`test(registry): add property-based tests for register and deregister`](https://github.com/Aycode01/ossify-core/issues/9).
+- **Docs**: [`docs: add a worked end-to-end testnet example`](https://github.com/Aycode01/ossify-core/issues/10).
 
 ## 5. Demo Video
 *(MANUAL STEP: Insert link to screen recording showing registry interaction, collateral querying, and the unauthorized registration failure case).*
