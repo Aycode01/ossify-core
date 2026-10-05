@@ -1,7 +1,17 @@
 #![no_std]
-use soroban_sdk::{contract, contractimpl, Address, Env};
+use soroban_sdk::{contract, contractevent, contractimpl, Address, Env};
 use ossify_rwa_trait::RwaCollateralClient;
 use ossify_registry::{RwaRegistry, RwaRegistryClient}; // we actually just need the client or to call it
+
+/// Emitted when the pool lends out against a registered RWA token.
+///
+/// `data_format = "vec"` keeps the published data a two-element list,
+/// `(token, amount_lent)`, matching what `Events::publish` emitted.
+#[contractevent(data_format = "vec")]
+pub struct Borrow {
+    token: Address,
+    amount_lent: i128,
+}
 
 #[contract]
 pub struct ToyLendingPool;
@@ -26,7 +36,7 @@ impl ToyLendingPool {
         
         // We might lend out 50% of the collateral value
         let amount_lent = value / 2;
-        env.events().publish((soroban_sdk::symbol_short!("borrow"),), (token, amount_lent));
+        Borrow { token, amount_lent }.publish(&env);
         amount_lent
     }
 }

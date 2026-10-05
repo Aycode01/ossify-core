@@ -1,9 +1,24 @@
 #![no_std]
-use soroban_sdk::{contract, contractimpl, contracttype, Address, Env, Vec};
+use soroban_sdk::{contract, contractevent, contractimpl, contracttype, Address, Env, Vec};
 
 #[contracttype]
 pub enum DataKey {
     Tokens,
+}
+
+/// Emitted when a token registers itself with the registry.
+///
+/// `data_format = "single-value"` keeps the published data identical to the
+/// plain address that was passed to `Events::publish`.
+#[contractevent(data_format = "single-value")]
+pub struct Register {
+    token: Address,
+}
+
+/// Emitted when a token is removed from the registry.
+#[contractevent(data_format = "single-value")]
+pub struct Deregister {
+    token: Address,
 }
 
 #[contract]
@@ -23,7 +38,7 @@ impl RwaRegistry {
         if !tokens.contains(&token) {
             tokens.push_back(token.clone());
             env.storage().instance().set(&DataKey::Tokens, &tokens);
-            env.events().publish((soroban_sdk::symbol_short!("register"),), token);
+            Register { token }.publish(&env);
         }
     }
 
@@ -48,7 +63,7 @@ impl RwaRegistry {
         if let Some(index) = tokens.first_index_of(&token) {
             tokens.remove(index);
             env.storage().instance().set(&DataKey::Tokens, &tokens);
-            env.events().publish((soroban_sdk::Symbol::new(&env, "deregister"),), token);
+            Deregister { token }.publish(&env);
         }
     }
 }
