@@ -1,7 +1,7 @@
 #![no_std]
 use soroban_sdk::{contract, contractevent, contractimpl, Address, Env};
 use ossify_rwa_trait::RwaCollateralClient;
-use ossify_registry::{RwaRegistry, RwaRegistryClient}; // we actually just need the client or to call it
+use ossify_registry::RwaRegistryClient; // we actually just need the client to call it
 
 /// Emitted when the pool lends out against a registered RWA token.
 ///

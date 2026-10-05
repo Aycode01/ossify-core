@@ -1,7 +1,7 @@
 #![cfg(test)]
 
 use super::*;
-use soroban_sdk::{testutils::{Address as _, Events}, Address, Env, IntoVal, symbol_short, vec};
+use soroban_sdk::{testutils::Events, Env, IntoVal, symbol_short, vec};
 
 use ossify_registry::{RwaRegistry, RwaRegistryClient};
 use ossify_reference_rwa::{MockInvoiceToken, MockInvoiceTokenClient};
