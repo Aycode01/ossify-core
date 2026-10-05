@@ -18,11 +18,7 @@ Open **Security → Report a vulnerability** on this repository: https://github.
 
 This opens a private advisory that only the maintainers can see. It is the best option because the report is encrypted in transit and stays inside the repository's issue tracker.
 
-> **TODO(owner):** This page only works once private vulnerability reporting is switched on for the repository. If the link returns a 404, enable it under **Settings → Code security → Private vulnerability reporting**, then delete this note.
-
 ### Alternative: direct contact
 The maintainer is [@Aycode01](https://github.com/Aycode01). Reach out privately through the contact options on that GitHub profile.
-
-> **TODO(owner):** Add a direct contact handle here. The project currently only has a community group invite link (https://t.me/+KUvycekLJrcxYmM0), which is a group, not a private channel, so it is not listed as a reporting channel. Replace this note with your personal Telegram handle, Signal number, or email address before relying on this policy.
 
 We will acknowledge receipt of your vulnerability report and strive to address the issue promptly.
