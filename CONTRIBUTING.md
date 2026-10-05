@@ -10,7 +10,7 @@ We welcome contributions to Ossify! This guide covers how to build, test, and su
 
 ## Claiming a Wave Issue
 
-- If you see an open issue labeled for the Wave program, please comment to claim it before starting work.
+- If you see an open issue that is part of the Wave program, please comment to claim it before starting work.
 - Wait for a maintainer to assign you to avoid duplicated effort.
 
 ## Pull Request Expectations

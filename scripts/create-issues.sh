@@ -6,7 +6,6 @@
 
 gh issue create \
   --title "feat: create ossify-sdk adapter package" \
-  --label "enhancement,Phase 3" \
   --body "### Summary
 We need to build the \`ossify-sdk\` to provide adapters for easily wrapping existing RWA tokens with the \`RwaCollateral\` interface.
 
@@ -20,7 +19,6 @@ We need to build the \`ossify-sdk\` to provide adapters for easily wrapping exis
 
 gh issue create \
   --title "feat: build second reference consumer (Insurance Pool)" \
-  --label "enhancement,Phase 4" \
   --body "### Summary
 Currently, we have \`toy-lending-pool\`. We need a second reference consumer, such as an insurance pool, that demonstrates utilizing the \`RwaCollateral\` standard to back insurance policies.
 
@@ -34,7 +32,6 @@ Currently, we have \`toy-lending-pool\`. We need a second reference consumer, su
 
 gh issue create \
   --title "feat: integrate fractionalized vaults into the standard" \
-  --label "enhancement,Phase 6" \
   --body "### Summary
 Currently, \`RwaCollateral\` primarily targets 1:1 asset-to-token models. We need to explore extending the interface or creating a secondary standard to natively support fractionalized/vault-style RWA tokens without forcing consumers to handle fractional math.
 
@@ -48,7 +45,6 @@ Currently, \`RwaCollateral\` primarily targets 1:1 asset-to-token models. We nee
 
 gh issue create \
   --title "feat(registry): add paginated get_registered for large token lists" \
-  --label "enhancement,Phase 2" \
   --body "### Summary
 \`RwaRegistry::get_registered\` returns the full \`Vec<Address>\` in a single call. As the registry grows, that response becomes unbounded, which is a practical limit on Soroban due to the read footprint of a single invocation. We need a cursor-based paginated view that mirrors how indexers already walk large collections.
 
@@ -63,7 +59,6 @@ gh issue create \
 
 gh issue create \
   --title "feat(registry): add get_collateral_info view for indexers" \
-  --label "enhancement,Phase 2" \
   --body "### Summary
 Indexers currently have to make three separate calls per token (\`is_registered\`, \`collateral_value\`, \`is_redeemable\`) to build a view of the ecosystem. A single aggregate view makes ingestion cheaper and gives consumers a stable struct to read.
 
@@ -78,7 +73,6 @@ Indexers currently have to make three separate calls per token (\`is_registered\
 
 gh issue create \
   --title "test(reference-rwa): cover liquidation and redemption logic" \
-  --label "enhancement,Phase 2" \
   --body "### Summary
 \`MockInvoiceToken\` returns a hardcoded \`1000_0000000\`, \`true\`, and \`Ok(())\`. The toy lending pool has tests, but the reference RWA itself has none, so the sample implementation that adopters are expected to copy is unverified.
 
@@ -93,7 +87,6 @@ gh issue create \
 
 gh issue create \
   --title "feat: add second reference token modelling a warehouse receipt" \
-  --label "enhancement,Phase 4" \
   --body "### Summary
 The only reference token models a factored invoice. A warehouse receipt exercises different lifecycle states, such as expiry and default, which gives consumers a second shape to integrate against and makes the standard's scope clearer.
 
@@ -108,7 +101,6 @@ The only reference token models a factored invoice. A warehouse receipt exercise
 
 gh issue create \
   --title "spike: fractional-share adapter for vault-style RWA tokens" \
-  --label "enhancement,Phase 6" \
   --body "### Summary
 \`SPEC.md\` flags that v1 does not serve fractionalized vault tokens well, and \`RESEARCH.md\` notes the current workaround pushes fractional math onto the lending pool (\`balance(user) * collateral_value / total_supply\`). This issue is a scoped spike to measure that workaround against a real vault, before deciding whether to extend the trait.
 
@@ -123,7 +115,6 @@ gh issue create \
 
 gh issue create \
   --title "test(registry): add property-based tests for register and deregister" \
-  --label "enhancement,Phase 2" \
   --body "### Summary
 The registry has two example-style unit tests. Its invariants, that a token appears at most once and that deregister is idempotent, are currently only checked by hand-written cases.
 
@@ -138,7 +129,6 @@ The registry has two example-style unit tests. Its invariants, that a token appe
 
 gh issue create \
   --title "docs: add a worked end-to-end testnet example" \
-  --label "documentation,Phase 5" \
   --body "### Summary
 The guides describe each step in isolation. A reader has to assemble the deploy, register, and borrow sequence themselves, and the current testnet contract IDs are not written down anywhere in \`docs/\`.
 

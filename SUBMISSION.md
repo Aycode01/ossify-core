@@ -25,7 +25,7 @@ The full documentation site content is available in the `docs/` directory of the
 - Consumer Guide for DeFi protocols
 
 ## 4. Roadmap Issues (Filed)
-The following 10 roadmap items are filed as GitHub issues, each with acceptance criteria and a phase label. See the [issues tab](https://github.com/Aycode01/ossify-core/issues) for the full list.
+The following 10 roadmap items are filed as GitHub issues, each with acceptance criteria. See the [issues tab](https://github.com/Aycode01/ossify-core/issues) for the full list.
 - **SDK**: [`feat: create ossify-sdk adapter package`](https://github.com/Aycode01/ossify-core/issues/1) for platforms using alternative DTO models (e.g., LiquiFact).
 - **Fractional vaults**: [`feat: integrate fractionalized vaults into the standard`](https://github.com/Aycode01/ossify-core/issues/3) and the follow-up [`spike: fractional-share adapter for vault-style RWA tokens`](https://github.com/Aycode01/ossify-core/issues/8).
 - **Consumers**: [`feat: build second reference consumer (Insurance Pool)`](https://github.com/Aycode01/ossify-core/issues/2).
