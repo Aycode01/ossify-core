@@ -34,5 +34,3 @@ The following 10 roadmap items are filed as GitHub issues, each with acceptance 
 - **Tests**: [`test(reference-rwa): cover liquidation and redemption logic`](https://github.com/Aycode01/ossify-core/issues/6) and [`test(registry): add property-based tests for register and deregister`](https://github.com/Aycode01/ossify-core/issues/9).
 - **Docs**: [`docs: add a worked end-to-end testnet example`](https://github.com/Aycode01/ossify-core/issues/10).
 
-## 5. Demo Video
-*(MANUAL STEP: Insert link to screen recording showing registry interaction, collateral querying, and the unauthorized registration failure case).*
